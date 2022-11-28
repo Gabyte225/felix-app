@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movies: [],
+      favorites: [],
       loading: false,
       error: false,
       className: "custom-button",
@@ -20,12 +21,26 @@ class App extends React.Component {
     };
   }
 
-  handleClick = () => {
-    if (this.state.className === "custom-button") {
-      this.setState({ className: "favorite-button", text: "Remove 💔" });
-    } else {
-      this.setState({ className: "custom-button", text: "Favorite" });
+  handleClick = (id) => {
+    let index = this.state.favorites.indexOf(id);
+    console.log(index);
+    if (index === -1) {
+      this.setState((state) => ({
+        favorites: [...state.favorites, id],
+        className: "favorite-button",
+      }));
     }
+    // else {
+    //   this.setState((state) => ({
+    //     favorites: [
+    //       ...state.favorites.slice(0, index),
+    //       ...state.favorites.slice(index, state.favorites.length - 1),
+    //     ],
+    //     className: "custom-button",
+    //   }));
+    //   // this.setState({ className: "custom-button" });
+    // }
+    console.log(id);
   };
 
   async componentDidMount() {
@@ -68,11 +83,12 @@ class App extends React.Component {
               <h3 className="movie-title">{title}</h3>,
               <p className="movie-about">{description.substring(0, 55)}...</p>,
               <Button
+                id={id}
                 type="button"
                 className={this.state.className}
-                onClick={this.handleClick}
+                onClick={() => this.handleClick(id)}
               >
-                {this.state.text}
+                {this.state.favorites.includes(id) ? "Remove 💔" : "Favorite"}
               </Button>
               ,
             </Card>
