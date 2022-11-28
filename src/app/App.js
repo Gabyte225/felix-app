@@ -16,8 +16,6 @@ class App extends React.Component {
       favorites: [],
       loading: false,
       error: false,
-      className: "custom-button",
-      text: "Favorite",
     };
   }
 
@@ -27,19 +25,15 @@ class App extends React.Component {
     if (index === -1) {
       this.setState((state) => ({
         favorites: [...state.favorites, id],
-        className: "favorite-button",
+      }));
+    } else {
+      this.setState((state) => ({
+        favorites: [
+          ...state.favorites.slice(0, index),
+          ...state.favorites.slice(index, state.favorites.length - 1),
+        ],
       }));
     }
-    // else {
-    //   this.setState((state) => ({
-    //     favorites: [
-    //       ...state.favorites.slice(0, index),
-    //       ...state.favorites.slice(index, state.favorites.length - 1),
-    //     ],
-    //     className: "custom-button",
-    //   }));
-    //   // this.setState({ className: "custom-button" });
-    // }
     console.log(id);
   };
 
@@ -85,7 +79,11 @@ class App extends React.Component {
               <Button
                 id={id}
                 type="button"
-                className={this.state.className}
+                className={
+                  this.state.favorites.includes(id)
+                    ? "favorite-button"
+                    : "custom-button"
+                }
                 onClick={() => this.handleClick(id)}
               >
                 {this.state.favorites.includes(id) ? "Remove 💔" : "Favorite"}
