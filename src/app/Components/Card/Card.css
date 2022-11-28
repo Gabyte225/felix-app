@@ -1,0 +1,28 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  background-color: #222222;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.movie-image {
+  width: 270px;
+}
+.movie-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #e5e5e5;
+  padding: 0 15px;
+  margin: 0;
+}
+.movie-about {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #e5e5e5;
+  padding: 0 15px;
+  margin: 0;
+}
