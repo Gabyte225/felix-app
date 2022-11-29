@@ -20,15 +20,13 @@ class App extends React.Component {
   }
 
   handleClick = (id) => {
-    let index = this.state.favorites.indexOf(id);
-    console.log(index);
-    if (index === -1) {
+    if (!this.state.favorites.includes(id)) {
       this.setState((state) => ({
         favorites: [...state.favorites, id],
       }));
     } else {
       this.setState({
-        favorites: this.state.favorites.filter((_, i) => i !== index),
+        favorites: this.state.favorites.filter((movieId) => movieId !== id),
       });
     }
   };
@@ -58,11 +56,11 @@ class App extends React.Component {
       <div className="App">
         <Header className="header">
           <img src={Flogo} className="logo" alt="logo" />
-          <Button className="custom-button">Sign in</Button>
+          <Button custom>Sign in</Button>
         </Header>
         <HeroBanner className="hero-banner">
           <p className="content-text">Wanna more Content?</p>
-          <Button className="custom-button">Get Access</Button>
+          <Button custom>Get Access</Button>
         </HeroBanner>
         <div className="main-container">
           {loading && <img src={logo} className="App-logo" alt="logo" />}
@@ -73,18 +71,11 @@ class App extends React.Component {
               <div className="movie-card-about">
                 <div className="movie-title-about">
                   <h3 className="movie-title">{title}</h3>,
-                  <p className="movie-about">
-                    {description.substring(0, 55)}...
-                  </p>
+                  <p className="movie-about">{description}</p>
                 </div>
                 <Button
                   id={id}
-                  type="button"
-                  className={
-                    this.state.favorites.includes(id)
-                      ? "favorite-button"
-                      : "custom-button"
-                  }
+                  style={this.state.favorites.includes(id) ? "outline" : ""}
                   onClick={() => this.handleClick(id)}
                 >
                   {this.state.favorites.includes(id) ? "Remove 💔" : "Favorite"}
@@ -94,7 +85,7 @@ class App extends React.Component {
             </Card>
           ))}
         </div>
-        <Button className="custom-button">Get More Content</Button>
+        <Button custom>Get More Content</Button>
         <Footer className="footer"></Footer>
       </div>
     );

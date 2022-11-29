@@ -36,4 +36,8 @@
   line-height: 19px;
   color: #e5e5e5;
   margin: -15px 0 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
