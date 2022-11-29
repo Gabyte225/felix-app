@@ -4,18 +4,30 @@
   width: 270px;
   background-color: #222222;
   text-align: left;
-  justify-content: space-between;
+}
+.movie-image {
+  height: 250px;
+  object-fit: cover;
+  object-position: 100% 0;
 }
 
-.movie-image {
-  width: 270px;
+.movie-card-about {
+  padding: 0 15px 20px;
 }
+.movie-title-about {
+  display: flex;
+  height: 120px;
+  flex-direction: column;
+}
+.movie-title-about:last-child {
+  float: inline-end;
+}
+
 .movie-title {
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
   color: #e5e5e5;
-  padding: 0 15px;
   margin: 0;
 }
 .movie-about {
@@ -23,6 +35,5 @@
   font-size: 16px;
   line-height: 19px;
   color: #e5e5e5;
-  padding: 0 15px;
-  margin: 0;
+  margin: -15px 0 0 0;
 }

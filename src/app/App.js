@@ -27,14 +27,10 @@ class App extends React.Component {
         favorites: [...state.favorites, id],
       }));
     } else {
-      this.setState((state) => ({
-        favorites: [
-          ...state.favorites.slice(0, index),
-          ...state.favorites.slice(index, state.favorites.length - 1),
-        ],
-      }));
+      this.setState({
+        favorites: this.state.favorites.filter((_, i) => i !== index),
+      });
     }
-    console.log(id);
   };
 
   async componentDidMount() {
@@ -74,21 +70,27 @@ class App extends React.Component {
           {movies.map(({ title, id, image, description }) => (
             <Card className="movie-card" key={id}>
               <img src={image} alt="movie" className="movie-image"></img>,
-              <h3 className="movie-title">{title}</h3>,
-              <p className="movie-about">{description.substring(0, 55)}...</p>,
-              <Button
-                id={id}
-                type="button"
-                className={
-                  this.state.favorites.includes(id)
-                    ? "favorite-button"
-                    : "custom-button"
-                }
-                onClick={() => this.handleClick(id)}
-              >
-                {this.state.favorites.includes(id) ? "Remove 💔" : "Favorite"}
-              </Button>
-              ,
+              <div className="movie-card-about">
+                <div className="movie-title-about">
+                  <h3 className="movie-title">{title}</h3>,
+                  <p className="movie-about">
+                    {description.substring(0, 55)}...
+                  </p>
+                </div>
+                <Button
+                  id={id}
+                  type="button"
+                  className={
+                    this.state.favorites.includes(id)
+                      ? "favorite-button"
+                      : "custom-button"
+                  }
+                  onClick={() => this.handleClick(id)}
+                >
+                  {this.state.favorites.includes(id) ? "Remove 💔" : "Favorite"}
+                </Button>
+                ,
+              </div>
             </Card>
           ))}
         </div>
