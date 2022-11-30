@@ -11,9 +11,11 @@ import Card from "./Components/Card/Card";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const retrieveID = JSON.parse(localStorage.getItem("id")) || [];
+
     this.state = {
       movies: [],
-      favorites: [],
+      favorites: retrieveID,
       loading: false,
       error: false,
     };
@@ -24,9 +26,12 @@ class App extends React.Component {
       this.setState((state) => ({
         favorites: [...state.favorites, id],
       }));
+      localStorage.setItem("id", JSON.stringify([...this.state.favorites, id]));
     } else {
+      const favorit = this.state.favorites.filter((movieId) => movieId !== id);
+      localStorage.setItem("id", JSON.stringify(favorit));
       this.setState({
-        favorites: this.state.favorites.filter((movieId) => movieId !== id),
+        favorites: favorit,
       });
     }
   };
