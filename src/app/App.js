@@ -40,7 +40,7 @@ class App extends React.Component {
     this.setState({ loading: true });
     try {
       const result = await fetch(
-        "https://academy-video-api.herokuapp.com/content/free-items"
+        "https://dummy-video-api.onrender.com/content/free-items"
       );
 
       if (result.status >= 400 && result.status <= 599) {
@@ -61,11 +61,11 @@ class App extends React.Component {
       <div className="App">
         <Header className="header">
           <img src={Flogo} className="logo" alt="logo" />
-          <Button custom>Sign in</Button>
+          <Button>Sign in</Button>
         </Header>
         <HeroBanner className="hero-banner">
           <p className="content-text">Wanna more Content?</p>
-          <Button custom>Get Access</Button>
+          <Button>Get Access</Button>
         </HeroBanner>
         <div className="main-container">
           {loading && <img src={logo} className="App-logo" alt="logo" />}
@@ -90,7 +90,7 @@ class App extends React.Component {
             </Card>
           ))}
         </div>
-        <Button custom>Get More Content</Button>
+        <Button>Get More Content</Button>
         <Footer className="footer"></Footer>
       </div>
     );
