@@ -10,3 +10,7 @@
   align-items: center;
   justify-content: space-between;
 }
+.button-login-link {
+  text-decoration: none;
+  color: #e5e5e5;
+}

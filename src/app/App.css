@@ -12,7 +12,10 @@
   display: flex;
   flex-wrap: wrap;
   padding: 50px 50px;
-  gap: 100px
+  gap: 100px;
+}
+.get-more-content {
+  margin-bottom: 70px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
