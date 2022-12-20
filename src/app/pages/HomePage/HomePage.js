@@ -6,7 +6,7 @@ import Header from "../../Components/Header/Header";
 import HeroBanner from "../../Components/HeroBanner/HeroBanner";
 import Footer from "../../Components/Footer/Footer";
 import Card from "../../Components/Card/Card";
-
+import { Link } from "react-router-dom";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -59,7 +59,13 @@ class HomePage extends React.Component {
     const { loading, error, movies } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header>
+          <Button>
+            <Link className="button-login-link" to="/login">
+              Sign in
+            </Link>
+          </Button>
+        </Header>
         <HeroBanner className="hero-banner">
           <p className="content-text">Wanna more Content?</p>
           <Button>Get Access</Button>
